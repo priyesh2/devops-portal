@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DevOps Dashboard</title>
+</head>
+<body>
+  <h1>DevOps Portal</h1>
+  <ul id="status-list"></ul>
+
+  <script>
+    fetch('/api/status')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('status-list');
+        Object.entries(data).forEach(([key, value]) => {
+          const li = document.createElement('li');
+          li.textContent = `${key.toUpperCase()}: ${value}`;
+          list.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
